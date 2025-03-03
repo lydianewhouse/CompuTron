@@ -100,6 +100,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             //Increment to the next memory value for next instruction
             instructionCounter++;
+            (*icPtr)++;
 
             break;
         
@@ -110,10 +111,11 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             word = memory[operand];
 
             // use the below cout if needed but comment before submission
-            //std::cout << "Contents of " << std::setfill('0') << std::setw(2) << operand << " : " << memory[operand] << "\n";
+            std::cout << "Contents of " << std::setfill('0') << std::setw(2) << operand << " : " << memory[operand] << "\n";
 
-            //Increments to the next memroy value for the next instruction
+            //Increments to the next memory value for the next instruction
             instructionCounter++;
+            (*icPtr)++;
             
             break;
         
@@ -121,9 +123,11 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Load the value from the memory location pointed to by 'opPtr' into the accumulator (acPtr)
             
             accumulator = memory[operand];
+            *acPtr = (int)*opPtr;
 
             //Increment the instruction counter (icPtr) to point to the next instruction
             instructionCounter++;
+            (*icPtr)++;
 
             break;
 
@@ -134,6 +138,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             // Increment the instruction counter (icPtr) to move to the next instruction
             instructionCounter++;
+            (*icPtr)++;
 
             break;
 
@@ -155,10 +160,12 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
             instructionCounter++;
+            (*icPtr)++;
 
             break;
 
@@ -180,9 +187,11 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
+            (*icPtr)++;
             instructionCounter++;
 
             break;
@@ -203,10 +212,12 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
             instructionCounter++;
+            (*icPtr)++;
 
             break;
 
@@ -226,10 +237,12 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
             instructionCounter++;
+            (*icPtr)++;
 
             break;
 
@@ -238,7 +251,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Moves instruction counter to operand location
             instructionCounter = operand;
 
-            //*icPtr = *opPtr;
+            *icPtr = *opPtr;
             break;
             
         case Command::branchNeg:
@@ -247,11 +260,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             if (accumulator < 0)
             {
                 instructionCounter = operand;
+                *icPtr = *opPtr;
             }
             else
             {
                 //Just increment instruction counter
                 instructionCounter++;
+                (*icPtr)++;
             }
 
             //acPtr < 0 ? *icPtr = *opPtr : ++(*icPtr);
@@ -263,11 +278,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             if (accumulator == 0)
             {
                 instructionCounter = operand;
+                *icPtr = *opPtr;
             }
             else
             {
                 //Just increment instruction counter
                 instructionCounter++;
+                (*icPtr)++;
             }
 
             //*acPtr == 0 ? *icPtr = *opPtr : ++(*icPtr);
