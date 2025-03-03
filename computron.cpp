@@ -213,7 +213,16 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
         case Command::divide:
             // as above do it for division
 
+            //Check if dividing by zero
+            if (memory[operand] == 0)
+            {
+                //Throw exception
+                throw std::runtime_error("Cannot divide by 0");
+            }
+
             word = accumulator / memory[operand];
+
+            
 
             //Check if result is valid to be stored
             if (word > maxWord || word < minWord)
