@@ -155,6 +155,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
@@ -180,6 +181,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
@@ -203,6 +205,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
@@ -235,6 +238,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
+                *acPtr = word;
             }
 
             //Increments to next instruction
