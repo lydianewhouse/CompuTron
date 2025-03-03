@@ -310,33 +310,7 @@ bool validWord(int word){
         return false;
     }
 
-    //Check for empty memory space
-    if (word == 0)
-    {
-        return true;
-    }
-
-    //Check if the operation code is valid
-    int operationCode = word / 100;
-    switch (operationCode)
-    {
-        case static_cast<int>(Command::read):
-        case static_cast<int>(Command::write):
-        case static_cast<int>(Command::load):
-        case static_cast<int>(Command::store):
-        case static_cast<int>(Command::add):
-        case static_cast<int>(Command::subtract):
-        case static_cast<int>(Command::divide):
-        case static_cast<int>(Command::multiply):
-        case static_cast<int>(Command::branch):
-        case static_cast<int>(Command::branchNeg):
-        case static_cast<int>(Command::branchZero):
-        case static_cast<int>(Command::halt):
-            return true;
-        default:
-            return false;
-
-    }
+    return true;
 
 };
 
