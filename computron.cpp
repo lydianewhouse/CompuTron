@@ -39,7 +39,7 @@ void load_from_file(std::array<int, memorySize>& memory, const std::string& file
             else
             {
                 //Invalid instruction, throw exception
-                throw std::runtime_error("invalid_input");
+                throw std::runtime_error("invalid_input (load_from_file)");
             }
         }
     inputFile.close();
@@ -61,7 +61,7 @@ Command opCodeToCommand(size_t opCode){
         case 41: return Command::branchNeg;
         case 42: return Command::branchZero;
         case 43: return Command::halt;
-        default: throw std::runtime_error("invalid_input");
+        default: throw std::runtime_error("invalid_input (opCodeToCommand)");
     };
 }
 
@@ -173,7 +173,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             if (word > maxWord || word < minWord)
             {
                 //Throw exception
-                throw std::runtime_error("Add result not valid");
+                throw std::runtime_error("Subtract result not valid");
             }
 
             else
@@ -196,7 +196,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             if (word > maxWord || word < minWord)
             {
                 //Throw exception
-                throw std::runtime_error("Add result not valid");
+                throw std::runtime_error("Multiply result not valid");
             }
 
             else
@@ -219,7 +219,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             if (word > maxWord || word < minWord)
             {
                 //Throw exception
-                throw std::runtime_error("Add result not valid");
+                throw std::runtime_error("Divide result not valid");
             }
 
             else
@@ -278,6 +278,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             
         default:
             // any instruction required
+            throw std::runtime_error("invalid_input (Execute Switch Statement");
             break;
         };
         // You may modify the below while condition if required
