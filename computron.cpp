@@ -61,7 +61,7 @@ Command opCodeToCommand(size_t opCode){
         case 41: return Command::branchNeg;
         case 42: return Command::branchZero;
         case 43: return Command::halt;
-        default: throw std::runtime_error("invalid_input");
+        default: return Command::halt;
     };
 }
 
@@ -100,7 +100,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             //Increment to the next memory value for next instruction
             instructionCounter++;
-            (*icPtr)++;
+            
 
             break;
         
@@ -115,7 +115,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             //Increments to the next memory value for the next instruction
             instructionCounter++;
-            (*icPtr)++;
+            
             
             break;
         
@@ -123,11 +123,11 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Load the value from the memory location pointed to by 'opPtr' into the accumulator (acPtr)
             
             accumulator = memory[operand];
-            *acPtr = (int)*opPtr;
+            
 
             //Increment the instruction counter (icPtr) to point to the next instruction
             instructionCounter++;
-            (*icPtr)++;
+            
 
             break;
 
@@ -138,7 +138,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             // Increment the instruction counter (icPtr) to move to the next instruction
             instructionCounter++;
-            (*icPtr)++;
+            
 
             break;
 
@@ -165,7 +165,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             //Increments to next instruction
             instructionCounter++;
-            (*icPtr)++;
+            
 
             break;
 
@@ -187,11 +187,11 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
-                *acPtr = word;
+                
             }
 
             //Increments to next instruction
-            (*icPtr)++;
+            
             instructionCounter++;
 
             break;
@@ -212,12 +212,12 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
-                *acPtr = word;
+                
             }
 
             //Increments to next instruction
             instructionCounter++;
-            (*icPtr)++;
+            
 
             break;
 
@@ -237,12 +237,12 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             {
                 //Stores word in accumulator
                 accumulator = word;
-                *acPtr = word;
+                
             }
 
             //Increments to next instruction
             instructionCounter++;
-            (*icPtr)++;
+            
 
             break;
 
@@ -251,7 +251,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Moves instruction counter to operand location
             instructionCounter = operand;
 
-            *icPtr = *opPtr;
+            
             break;
             
         case Command::branchNeg:
@@ -260,13 +260,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             if (accumulator < 0)
             {
                 instructionCounter = operand;
-                *icPtr = *opPtr;
+                
             }
             else
             {
                 //Just increment instruction counter
                 instructionCounter++;
-                (*icPtr)++;
+                
             }
 
             //acPtr < 0 ? *icPtr = *opPtr : ++(*icPtr);
@@ -278,13 +278,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             if (accumulator == 0)
             {
                 instructionCounter = operand;
-                *icPtr = *opPtr;
+                
             }
             else
             {
                 //Just increment instruction counter
                 instructionCounter++;
-                (*icPtr)++;
+                
             }
 
             //*acPtr == 0 ? *icPtr = *opPtr : ++(*icPtr);
