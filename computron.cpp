@@ -72,7 +72,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
     //Initializes variables
     int accumulator{0};
-    int instructionCounter{0};
+    size_t instructionCounter{0};
     int instructionRegister{0};
     int operationCode{0};
     int operand{0};
@@ -83,6 +83,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
         instructionRegister = memory [instructionCounter];
         operationCode = instructionRegister / 100; // divide
         operand = instructionRegister % 100; // remainder
+
+        //Updates pointer values
+        *acPtr = accumulator;
+        *icPtr = instructionCounter;
+        *irPtr = instructionRegister;
+        *opCodePtr = operationCode;
+        *opPtr = operand;
         
 
         switch(opCodeToCommand(operationCode)){
@@ -101,6 +108,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Increment to the next memory value for next instruction
             instructionCounter++;
 
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
+
             break;
         
         case Command::write:
@@ -114,6 +128,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             //Increments to the next memroy value for the next instruction
             instructionCounter++;
+
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
             
             break;
         
@@ -122,8 +143,17 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             
             accumulator = memory[operand];
 
+            *acPtr = accumulator;
+
             //Increment the instruction counter (icPtr) to point to the next instruction
             instructionCounter++;
+
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
 
             break;
 
@@ -134,6 +164,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             // Increment the instruction counter (icPtr) to move to the next instruction
             instructionCounter++;
+
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
 
             break;
 
@@ -161,6 +198,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Increments to next instruction
             instructionCounter++;
 
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
+
             break;
 
         case Command::subtract:
@@ -187,6 +231,14 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Increments to next instruction
             instructionCounter++;
 
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
+
+
             break;
 
         case Command::multiply:
@@ -210,6 +262,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
             //Increments to next instruction
             instructionCounter++;
+
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
 
             break;
 
@@ -244,12 +303,26 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             //Increments to next instruction
             instructionCounter++;
 
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
+
             break;
 
         case Command::branch:
 
             //Moves instruction counter to operand location
             instructionCounter = operand;
+
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
 
             //*icPtr = *opPtr;
             break;
@@ -267,6 +340,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
                 instructionCounter++;
             }
 
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
+
             //acPtr < 0 ? *icPtr = *opPtr : ++(*icPtr);
             break;
             
@@ -283,10 +363,23 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
                 instructionCounter++;
             }
 
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
+
             //*acPtr == 0 ? *icPtr = *opPtr : ++(*icPtr);
             break;
             
         case Command::halt:
+            //Updates pointer values
+            *acPtr = accumulator;
+            *icPtr = instructionCounter;
+            *irPtr = instructionRegister;
+            *opCodePtr = operationCode;
+            *opPtr = operand;
             break;
             
         default:
@@ -295,6 +388,10 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             break;
         };
         // You may modify the below while condition if required
+
+        
+
+
     }while(opCodeToCommand(operationCode) != Command::halt);
 
 //Updates pointer values
