@@ -143,7 +143,6 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             
             accumulator = memory[operand];
 
-            *acPtr = accumulator;
 
             //Increment the instruction counter (icPtr) to point to the next instruction
             instructionCounter++;
@@ -158,6 +157,19 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             break;
 
         case Command::store:
+
+
+            //Checks if store location is valid
+            if (operand > memorySize || operand < 0)
+            {
+                throw std::runtime_error("Operand out of scope");
+            }
+
+            if (memory[operand] != 0)
+            {
+                throw std::runtime_error("Cannot store in taken location");
+            }
+
             // Store the value in the accumulator (acPtr) into the memory location pointed to by 'opPtr'
             
             memory[operand] = accumulator;
