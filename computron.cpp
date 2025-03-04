@@ -158,9 +158,13 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
 
         case Command::store:
 
-
+            
             //Checks if store location is valid
-            if (operand > memorySize || operand < 0)
+            if (operand < 0)
+            {
+                throw std::runtime_error("Operand out of scope");
+            }
+            if (static_cast<size_t>(operand) > memorySize)
             {
                 throw std::runtime_error("Operand out of scope");
             }
