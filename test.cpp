@@ -25,24 +25,6 @@ TEST_CASE("Test load_from_file", "[CompuTron]")
     REQUIRE(memory[6] == 4300);
 }
 
-//TEST_CASE("Test opCodeToCommand", "[CompuTron]")
-//{
-//    REQUIRE(opCodeToCommand(10) == Command::read);
-//    REQUIRE(opCodeToCommand(11) == Command::write);
-//    REQUIRE(opCodeToCommand(20) == Command::load);
-//    REQUIRE(opCodeToCommand(21) == Command::store);
-//    REQUIRE(opCodeToCommand(30) == Command::add);
-//    REQUIRE(opCodeToCommand(31) == Command::subtract);
-//    REQUIRE(opCodeToCommand(32) == Command::divide);
-//    REQUIRE(opCodeToCommand(33) == Command::multiply);
-//    REQUIRE(opCodeToCommand(40) == Command::branch);
-//    REQUIRE(opCodeToCommand(41) == Command::branchNeg);
-//    REQUIRE(opCodeToCommand(42) == Command::branchZero);
-//    REQUIRE(opCodeToCommand(43) == Command::halt);
-//
-//
-//
-//}
 
 TEST_CASE("Test Execute (Add)", "[CompuTron]")
 {
