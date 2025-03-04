@@ -145,7 +145,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             word = accumulator + memory[operand];
 
             //Check if sum is valid to be stored
-            if (word > maxWord || word < minWord)
+            if (!validWord(word))
             {
                 //Throw exception
                 throw std::runtime_error("Add result not valid");
@@ -171,7 +171,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             word = accumulator - memory[operand];
 
             //Check if result is valid to be stored
-            if (word > maxWord || word < minWord)
+            if (!validWord(word))
             {
                 //Throw exception
                 throw std::runtime_error("Subtract result not valid");
@@ -195,7 +195,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             word = accumulator * memory[operand];
 
             //Check if result is valid to be stored
-            if (word > maxWord || word < minWord)
+            if (!validWord(word))
             {
                 //Throw exception
                 throw std::runtime_error("Multiply result not valid");
@@ -228,7 +228,7 @@ void execute(std::array<int, memorySize>& memory, int* const acPtr, size_t* cons
             
 
             //Check if result is valid to be stored
-            if (word > maxWord || word < minWord)
+            if (!validWord(word))
             {
                 //Throw exception
                 throw std::runtime_error("Divide result not valid");
